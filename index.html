@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta name="theme-color" content="#0a1824">
+  <meta name="description" content="Ski Live TV : météo des Alpes et des Vosges, prévisions neige à 7 jours et webcams officielles. Un dashboard pour votre télévision.">
+  <title>Ski Live TV — Le tour des sommets</title>
+  <link rel="stylesheet" href="style.css?v=20261123-2">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><svg viewBox="0 0 48 36" aria-hidden="true"><path d="M2 32L19 5l8 13 5-8 14 22H2z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M12 16l7 3 5-4" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>SKI LIVE <b>TV</b><small>LE TOUR DES SOMMETS</small></span></div>
+    <nav aria-label="Vues"><button id="dashboard" class="active">Station</button><button id="overview">Toutes les stations</button><button id="ranking">Neige au sol</button></nav>
+    <div class="clock"><strong id="clock">--:--</strong><span id="today"></span></div>
+  </header>
+  <div class="workspace">
+    <aside class="sidebar" aria-label="Stations">
+      <div class="sideheading"><span>VOTRE ITINÉRAIRE</span><span>16</span></div>
+      <button id="filter" class="filter" aria-pressed="false">Toutes les stations</button>
+      <div id="station-list" class="station-list"></div>
+      <div class="sidefoot">4 pays · Alpes &amp; Vosges<br><span>★ Vos stations favorites</span></div>
+    </aside>
+    <main id="main">
+      <section id="station-stage" class="station-stage" tabindex="0" aria-label="Station : gauche ou droite pour changer, OK pour mettre en pause">
+        <div class="station-heading"><div><p id="location" class="eyebrow"></p><h1 id="station-name">Val d’Isère</h1><p id="point" class="muted"></p></div><div class="station-number" id="station-number"></div></div>
+        <div id="status" role="status" class="status">Connexion à Open-Meteo…</div>
+        <div class="metrics">
+          <div class="metric temperature"><span>MAINTENANT · MODÈLE</span><strong id="temperature">—<small> °C</small></strong><p id="condition">Chargement météo…</p></div>
+          <div class="metric snow-ground"><span>NEIGE DÉJÀ AU SOL · MODÈLE</span><div class="snow-pair"><div><strong id="snow-base">—<small> cm</small></strong><p id="snow-base-label">Village</p></div><div><strong id="snow-summit">—<small> cm</small></strong><p id="snow-summit-label">Altitude</p></div></div></div>
+          <div class="metric"><span>VENT · À 10 M</span><strong id="wind">—<small> km/h</small></strong><p id="gusts">Rafales — · Direction —</p></div>
+        </div>
+      </section>
+      <div class="live-grid">
+        <section class="panel webcam-dashboard"><div class="panelheading"><div><h2>Webcam en direct</h2><span id="webcam-label" class="muted">Chargement…</span></div><span class="live-badge">DIRECT</span></div><div id="webcam-stage" class="webcam-stage"><p class="empty">Chargement de la webcam…</p></div><div class="webcam-footer"><span id="webcam-count" class="muted"></span><a id="webcam" class="textlink" href="https://www.valdisere.com/en/live/webcams/">Toutes les webcams</a></div></section>
+        <section class="panel map-panel"><div class="panelheading"><h2>Carte des stations</h2><span class="muted">N ↑</span></div><div id="map"></div><div class="map-links"><a id="map-link" class="textlink" href="https://www.openstreetmap.org/">Ouvrir la carte</a><span>© OpenStreetMap</span></div></section>
+      </div>
+      <div class="details">
+        <section class="panel forecast"><div class="panelheading"><h2>Les 7 prochains jours</h2><span id="date-range" class="muted"></span></div><div class="legend"><span class="max">Temp. max.</span><span class="min">Temp. min.</span><span class="snow">Neige / jour · cm ci-dessous</span></div><div id="chart" class="chart"><p class="empty">Les prévisions apparaîtront ici.</p></div><div id="days" class="days"></div></section>
+      </div>
+      <section class="sources panel"><div><h2>Informations terrain</h2><p>Sources officielles</p></div><button id="webcam-player" class="source-link webcam-link">Webcam plein écran</button><a id="snow-report" class="source-link" href="https://www.valdisere.com/live/enneigement/">Bulletin neige</a><a id="official" class="source-link" href="https://www.valdisere.com/live/">Pistes</a></section>
+      <p class="source-note">Hauteur au sol affichée : estimation du modèle Open-Meteo aux altitudes indiquées. Le bulletin neige officiel reste la référence terrain.</p>
+    </main>
+  </div>
+  <footer><div class="playback"><button id="previous" aria-label="Station précédente">Précédente</button><button id="play" aria-pressed="true">Pause</button><button id="next" aria-label="Station suivante">Suivante</button><button id="duration">30 s / station</button><button id="refresh">Actualiser</button></div><div id="rotation" class="rotation">Rotation automatique</div><button id="help">Aide télécommande</button></footer>
+  <div class="progress"><div id="progress"></div></div>
+</div>
+<div id="overlay" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="overlay-title"><div class="overlay-head"><div><p class="eyebrow">SKI LIVE TV</p><h2 id="overlay-title"></h2></div><button id="close">Fermer</button></div><div id="overlay-content"></div></div>
+<noscript>Activez JavaScript dans le navigateur pour afficher les prévisions météo.</noscript>
+<script src="stations.js?v=20261123-2"></script><script src="weather.js?v=20261123-2"></script><script src="app.js?v=20261123-2"></script>
+</body>
+</html>
